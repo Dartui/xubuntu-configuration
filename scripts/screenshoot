@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Script that prevents screenshooter overlapping.
+
+pkill xfce4-screensho
+xfce4-screenshooter -cr

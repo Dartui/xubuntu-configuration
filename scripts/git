@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Script for overriding git flows.
+# - do not show changes from `public` directory on `diff`
+
+if [[ "$1" == "diff" && "$@" != *"--help"* ]]; then
+    shift 1
+    command git diff "$@" -- :^public
+elif [[ "$1" == "add" && "$@" != *"--help"* && "$@" != *"public"* ]]; then
+    shift 1
+    command git add "$@" -- :^public
+else
+    command git "$@"
+fi

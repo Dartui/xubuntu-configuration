@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Script for converting `.p12` certificates to `.pem` key and certificate equivalent.
+
+CERT=$1
+PASS=$2
+
+if [ -z "$CERT" ]; then
+    echo "Missing certificate argument."
+    exit 1
+fi
+
+if [ ! -f "$CERT" ]; then
+    echo "\"$CERT\" file does not exists."
+    exit 1
+fi
+
+if [ -z "$PASS" ]; then
+    echo "Missing password argument."
+    exit 1
+fi
+
+openssl pkcs12 -in "$CERT" -out key.pem -nocerts -nodes -passin "pass:$PASS" -passout "pass:$PASS"
+openssl pkcs12 -in "$CERT" -out crt.pem -clcerts -nokeys -passin "pass:$PASS" -passout "pass:$PASS"
