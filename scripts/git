@@ -2,6 +2,7 @@
 
 # Script for overriding git flows.
 # - do not show changes from `public` directory on `diff`
+# - do not add changes from `public` on `add`, except whem explicit adding them`
 
 if [[ "$1" == "diff" && "$@" != *"--help"* ]]; then
     shift 1
