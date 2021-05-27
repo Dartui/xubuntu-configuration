@@ -3,6 +3,7 @@
 
 # except
 !scripts/
+!wallpaper/
 !.bash_aliases
 !.gitconfig
 !.gitignore
