@@ -1,0 +1,12 @@
+[alias]
+    public-clear = !rm -rf public && git checkout -- public
+    unstage = reset HEAD --
+    pick = cherry-pick
+    log-commits = log --pretty=oneline
+    cleanup = "!git branch --list 'arcpatch-D*' | sed 's/^* //' | xargs -r git branch -D"
+[merge]
+    tool = kdiff3
+[diff]
+    guitool = kdiff3
+[mergetool]
+    keepBackup = false
