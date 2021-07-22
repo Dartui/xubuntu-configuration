@@ -10,3 +10,5 @@
     guitool = kdiff3
 [mergetool]
     keepBackup = false
+[core]
+    editor = nano
