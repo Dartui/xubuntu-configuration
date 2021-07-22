@@ -1,0 +1,50 @@
+#!/bin/bash
+
+RED='\033[0;31;1m'
+GREEN='\033[0;32;1m'
+BOLD='\033[1m'
+NORMAL='\033[0m'
+
+PHPSTAN_BIN='./vendor/bin/phpstan'
+PHPCSFIXER_BIN='./vendor/bin/php-cs-fixer'
+ESLINT_BIN='./node_modules/.bin/eslint'
+
+if [ -f $PHPSTAN_BIN ]; then
+    echo -e "Running PHPStan..."
+
+    $PHPSTAN_BIN analyse --quiet
+
+    if [ $? = 0 ]; then
+        echo -e "${GREEN}No errors.${NORMAL}\n"
+    else
+        echo -e "${RED}Errors detected!${NORMAL} Run ${BOLD}${PHPSTAN_BIN} analyse${NORMAL} command to get errors list.\n"
+    fi;
+fi;
+
+if [ -f $PHPCSFIXER_BIN ]; then
+    echo -e "Running PHP CS Fixer..."
+
+    $PHPCSFIXER_BIN fix --quiet --dry-run --diff --using-cache=no
+
+    if [ $? = 0 ]; then
+        echo -e "${GREEN}No errors.${NORMAL}\n"
+    else
+        echo -e "${RED}Errors detected!${NORMAL} Run:"
+        echo -e "${BOLD}${PHPCSFIXER_BIN} fix --dry-run --diff${NORMAL} - to get errors list"
+        echo -e "${BOLD}${PHPCSFIXER_BIN} fix ${NORMAL}                 - to fix fixable errors.\n"
+    fi;
+fi;
+
+if [ -f $ESLINT_BIN ]; then
+    echo -e "Running eslint..."
+
+    $ESLINT_BIN --ext=.js --ext=.vue ./resources/js/ > /dev/null
+
+    if [ $? = 0 ]; then
+        echo -e "${GREEN}No errors.${NORMAL}\n"
+    else
+        echo -e "${RED}Errors detected!${NORMAL} Run:"
+        echo -e "  ${BOLD}${ESLINT_BIN} --ext=.js --ext=.vue ./resources/js${NORMAL}       - to get errors list"
+        echo -e "  ${BOLD}${ESLINT_BIN} --ext=.js --ext=.vue ./resources/js --fix${NORMAL} - to fix fixable errors.\n"
+    fi;
+fi;
