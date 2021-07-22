@@ -19,7 +19,8 @@ if [ -f $PHPSTAN_BIN ]; then
     if [ $? = 0 ]; then
         echo -e "${GREEN}No errors.${NORMAL}\n"
     else
-        echo -e "${RED}Errors detected!${NORMAL} Run ${BOLD}${PHPSTAN_BIN} analyse${NORMAL} command to get errors list.\n"
+        echo -e "${RED}Errors detected!${NORMAL} Run:"
+        echo -e "${BOLD}${PHPSTAN_BIN} analyse${NORMAL} command to get errors list.\n"
     fi;
 fi;
 
@@ -46,7 +47,7 @@ if [ -f $ESLINT_BIN ]; then
         echo -e "${GREEN}No errors.${NORMAL}\n"
     else
         echo -e "${RED}Errors detected!${NORMAL} Run:"
-        echo -e "  ${BOLD}${ESLINT_BIN} --ext=.js --ext=.vue ./resources/js${NORMAL}       - to get errors list"
-        echo -e "  ${BOLD}${ESLINT_BIN} --ext=.js --ext=.vue ./resources/js --fix${NORMAL} - to fix fixable errors.\n"
+        echo -e "${BOLD}${ESLINT_BIN} --ext=.js --ext=.vue ./resources/js${NORMAL}       - to get errors list"
+        echo -e "${BOLD}${ESLINT_BIN} --ext=.js --ext=.vue ./resources/js --fix${NORMAL} - to fix fixable errors.\n"
     fi;
 fi;
