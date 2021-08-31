@@ -27,14 +27,14 @@ fi;
 if [ -f $PHPCSFIXER_BIN ]; then
     echo -e "Running PHP CS Fixer..."
 
-    $PHPCSFIXER_BIN fix --quiet --dry-run --diff --using-cache=no
+    $PHPCSFIXER_BIN fix --quiet --allow-risky=yes --dry-run --diff --using-cache=no
 
     if [ $? = 0 ]; then
         echo -e "${GREEN}No errors.${NORMAL}\n"
     else
         echo -e "${RED}Errors detected!${NORMAL} Run:"
-        echo -e "${BOLD}${PHPCSFIXER_BIN} fix --dry-run --diff${NORMAL} - to get errors list"
-        echo -e "${BOLD}${PHPCSFIXER_BIN} fix ${NORMAL}                 - to fix fixable errors.\n"
+        echo -e "${BOLD}${PHPCSFIXER_BIN} fix --allow-risky=yes --dry-run --diff${NORMAL} - to get errors list"
+        echo -e "${BOLD}${PHPCSFIXER_BIN} fix --allow-risky=yes${NORMAL}                  - to fix fixable errors.\n"
     fi;
 fi;
 
